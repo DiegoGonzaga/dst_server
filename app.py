@@ -1,6 +1,7 @@
 from worlds import worlds
 from script_dst import start_server
 import os
+from dotenv import load_dotenv
 
 
 def show_options():
@@ -52,6 +53,7 @@ def choose_world(limit):
 
 
 def main():
+    load_dotenv()
     show_options()
     choice = choose_world(len(worlds))
     choice = int(choice)

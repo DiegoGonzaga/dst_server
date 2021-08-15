@@ -12,7 +12,7 @@ def start_server(cluster):
     elif actual_system == "Linux":
         dont_starter = DontStarveLinux(
             cluster,
-            persistent_path="/media/diego-gonzaga/58E68155E6813472/Users/diego/Documents/Klei/",
+            persistent_path=os.environ["LINUX_PERSISTENT_PATH"],
         )
     else:
         raise Exception("System not cataloged")
@@ -67,9 +67,7 @@ class DontStarveWindows(DontStarveStarter):
         )
         if command_interpreter is None:
             self.command_interpreter = "powershell"
-        self.dedicated_server_path = (
-            "C:/steamcmd/steamapps/common/Don't Starve Together Dedicated Server/bin"
-        )
+        self.dedicated_server_path = os.environ["WINDOWS_DEDICATED_SERVER_PATH"]
 
     def start_shard(self, shard_name):
         command = self.prepare_command(shard_name)
@@ -92,7 +90,7 @@ class DontStarveLinux(DontStarveStarter):
         )
         if command_interpreter is None:
             self.command_interpreter = "gnome-terminal"
-        self.dedicated_server_path = "/home/diego-gonzaga/.local/share/Steam/steamapps/common/Don't Starve Together Dedicated Server/bin/"
+        self.dedicated_server_path = os.environ["LINUX_DEDICATED_SERVER_PATH"]
 
     def start_shard(self, shard_name):
         command = self.prepare_command(shard_name)
