@@ -1,0 +1,3 @@
+worlds = [
+    {"name": "coffee", "public_name": "Coffee is life", "description": [""]},
+]

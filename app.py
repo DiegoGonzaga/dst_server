@@ -54,7 +54,9 @@ def choose_world(limit):
 def main():
     show_options()
     choice = choose_world(len(worlds))
-    start_server(worlds[int(choice) - 1]["name"])
+    choice = int(choice)
+    if choice != 0:
+        start_server(worlds[choice - 1]["name"])
 
 
 main()
