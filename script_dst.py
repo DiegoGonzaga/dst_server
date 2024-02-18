@@ -8,7 +8,11 @@ def start_server(cluster):
     actual_system = platform.system()
 
     if actual_system == "Windows":
-        dont_starter = DontStarveWindows(cluster)
+        dont_starter = DontStarveWindows(
+            cluster,
+            persistent_path=os.environ["WINDOWS_PERSISTENT_PATH"],
+        )
+        
     elif actual_system == "Linux":
         dont_starter = DontStarveLinux(
             cluster,
@@ -24,7 +28,7 @@ def start_server(cluster):
 class DontStarveStarter:
     dedicated_server_path = None
     command_interpreter = None
-    bin = "dontstarve_dedicated_server_nullrenderer"
+    bin = "dontstarve_dedicated_server_nullrenderer_x64"
 
     def __init__(
         self,
@@ -76,7 +80,7 @@ class DontStarveWindows(DontStarveStarter):
 
 
 class DontStarveLinux(DontStarveStarter):
-    bin = "./dontstarve_dedicated_server_nullrenderer"
+    bin = "./dontstarve_dedicated_server_nullrenderer_x64"
 
     def __init__(
         self,
